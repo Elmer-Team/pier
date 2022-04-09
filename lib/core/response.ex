@@ -1,3 +1,3 @@
 defmodule Pier.Core.Response do
-  defstruct [ :status, :done, body: nil]
+  defstruct [ :status, done: false, body: "", headers: []]
 end
