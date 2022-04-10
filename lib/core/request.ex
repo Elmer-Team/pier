@@ -3,7 +3,9 @@ defmodule Pier.Core.Request do
 
   alias Mint.HTTP
 
-  def request(conn, method, path, headers, body) do
+  def request(method, path, headers, body) do
+    {:ok, unix} = Application.fetch_env(:pier, :socket)
+    {:ok, conn} = HTTP.connect(:http, {:local, unix}, 0, hostname: "localhost")
     case HTTP.request(conn, method, path, headers, body) do
       {:ok, conn, _request_ref} -> stream_response(conn, %Response{})
     end

@@ -4,9 +4,8 @@ defmodule Pier.Engine.Image do
   alias Pier.Helpers.Decode
   defstruct [:containers, :created, :id, :labels, :parent_id, :repo_digests, :size, :shared_size, :virtual_size, :repo_tags]
   def index do
-    {:ok, unix} = Application.fetch_env(:pier, :socket)
-    {:ok, conn} = HTTP.connect(:http, {:local, unix}, 0, hostname: "localhost")
-    {:ok, response} = request(conn, "GET", "/images/json", [], nil)
+
+    {:ok, response} = request("GET", "/images/json", [], nil)
 
 
 
@@ -22,6 +21,10 @@ defmodule Pier.Engine.Image do
   for i <- transformed_response do
     Kernel.struct!(__MODULE__, i)
   end
+  end
+
+  def build(params) do
+    request("POST", "/build", [], params)
   end
 
 
