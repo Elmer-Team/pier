@@ -26,7 +26,7 @@ defmodule Pier.Helpers.Decode do
   end
 
   defp do_transform(v, _, _) do
-    IO.inspect v
+
     v
   end
 

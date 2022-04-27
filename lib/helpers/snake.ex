@@ -1,4 +1,5 @@
 defmodule  Pier.Helpers.Snake do
+  @moduledoc false
   import Pier.Helpers.Utils
   def transform(<<h::utf8, rest::binary>>) do
       do_transform(h, 0, rest)
