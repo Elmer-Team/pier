@@ -34,11 +34,11 @@ defmodule Pier.Core.Request do
     %{acc | status: status}
   end
 
-  defp parse_response({:headers, _request_ref, headers}, acc = %{headers: init}) do
+  defp parse_response({:headers, _request_ref, headers}, %{headers: init} = acc) do
     %{acc | headers: headers ++ init}
   end
 
-  defp parse_response({:data, _request_ref, data}, acc = %{body: body}) do
+  defp parse_response({:data, _request_ref, data}, %{body: body} = acc) do
     %{acc | body: body <> data}
   end
 
