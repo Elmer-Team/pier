@@ -1,5 +1,5 @@
 defmodule Pier.Engine.Image do
-  alias Mint.HTTP
+
   import Pier.Core.Request
   alias Pier.Helpers.Decode
   defstruct [:containers, :created, :id, :labels, :parent_id, :repo_digests, :size, :shared_size, :virtual_size, :repo_tags]
@@ -23,9 +23,43 @@ defmodule Pier.Engine.Image do
   end
   end
 
-  def build(params) do
+  def build(params, path) do
+    build_tar_list(path)
     request("POST", "/build", [], params)
   end
+
+
+  def build_tar_package(path), do: build_tar_list(path)
+
+  defp reject_files(path) do
+    if File.exists?(Path.join(path, ".gitignore")) do
+      with {:ok, content} <- File.read(Path.join(path, ".gitignore")) do
+        IO.puts content
+      end
+    end
+  end
+
+  defp build_tar_list(path) do
+
+    reject_files(path)
+    if File.dir?(path) do
+
+      File.ls!(path) |>
+      Enum.map(&(Path.join(path, &1)))
+      |>
+      Enum.map(
+        &build_tar_list/1
+      )
+
+
+    else
+
+      path
+    end
+  end
+
+
+
 
 
 end
