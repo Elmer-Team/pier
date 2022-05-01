@@ -1,0 +1,12 @@
+apiVersion: 1
+kind: apps
+swagger: "2.0"
+paths: 
+  - containers/json: 
+    
+spec:
+  - name: "postgres"
+    id: "postgres"
+    labels:
+      name: "postgres"
+      db_type: "postgres"
