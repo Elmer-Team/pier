@@ -12,7 +12,6 @@ defmodule Pier.Mix.Core.Params do
 
 
   defp parse_param_fn(param) do
-    Logger.info("parse param fn: #{inspect(param)}")
     Map.new(param)
   end
   end

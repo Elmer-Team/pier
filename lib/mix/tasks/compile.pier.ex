@@ -27,7 +27,7 @@ defmodule Mix.Tasks.Compile.Pier do
 
   def render(module_name, methods) do
     eval = EEx.eval_file("priv/templates/engine.ex", context: %{sub_module: module_name, methods: methods})
-    File.write("#{String.downcase(module_name)}.ex", eval)
+    File.write("lib/core/#{String.downcase(module_name)}.ex", eval)
 
   end
 

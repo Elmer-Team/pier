@@ -1,3 +1,3 @@
-def <%=context.method_name %> do
+def <%= context.method_name %> do
 
-end
+  end

@@ -13,7 +13,6 @@ defmodule Pier.Mix.Core.Method do
   end
 
   defp extract_method_name(methods) do
-    Logger.info(methods)
     {_, operation_id} = Enum.find(methods, fn {key, _} -> key == 'operationId' end)
     Macro.underscore(List.to_string(operation_id))
   end
@@ -35,7 +34,9 @@ defmodule Pier.Mix.Core.Method do
   end
 
   def render(%Method{} = method) do
-    EEx.eval_file("priv/templates/method.exs", context: %{method_name: method.method_name})
+    eval = EEx.eval_file("priv/templates/method.exs", context: %{method_name: method.method_name})
+    IO.inspect eval
+    eval
   end
 
 end
