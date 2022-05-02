@@ -6,10 +6,10 @@ defmodule Mix.Tasks.Compile.Pier do
 
   def run(_) do
     spec = eval_spec()
-
+    {'basePath', base_path} = Enum.find(spec, fn {key, _} -> key == 'basePath' end)
     spec
     |> Enum.find(fn {key, _} -> key == 'paths' end)
-    |> Method.build_methods()
+    |> Method.build_methods([base_path: base_path])
     |> Enum.reduce(%{}, &map_methods_to_module(&1, &2))
     |> evaluate_modules
 
@@ -27,7 +27,7 @@ defmodule Mix.Tasks.Compile.Pier do
 
   def render(module_name, methods) do
     eval = EEx.eval_file("priv/templates/engine.ex", context: %{sub_module: module_name, methods: methods})
-    File.write("lib/core/#{String.downcase(module_name)}.ex", eval)
+    :ok = File.write("lib/engine/#{String.downcase(module_name)}.ex", eval)
 
   end
 
