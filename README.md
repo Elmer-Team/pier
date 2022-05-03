@@ -19,3 +19,6 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/pier](https://hexdocs.pm/pier).
 
+
+# Pier 
+ Pier is an attempt to build a docker library by using `EEx` (and the open api v2 specifications)[https://swagger.io/specification/v2/]
