@@ -34,3 +34,16 @@ There's still some problems and bugs in the project. The project is also not pro
   * creating different environments in the config with different outputs in the config folder.
   * add flags such as `mix pier.compile --output /some/out/path` when generating folders.
   * add a `mix pier.compile build` flag as an environment to tell the application to ignore the files locage in lib/engine folder
+
+
+
+  ## Current Goals.
+  - Make application functional.
+  - Return data as a map reliably and safely.
+  - Add authentication.
+  - Fix breaking issues.
+
+  ## Future enhancements.
+  - Add structs and typespecs.
+  - Add logging and logging levels.
+  - Add some kind of genserver support.
